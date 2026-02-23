@@ -30,6 +30,10 @@ Once we develop the relative → absolute abundance model, we would conduct furt
 
 ### Modeling Absolute from Relative Abundance
 
+In the third goal of our project, we aim to model absolute abundances using only relative abundance data. As aforementioned, relative abundance tables are methodologically easier and less costly to curate due to inherent sample collection and sequencing procedures. However, this data is limited by its compositional nature, as relative abundance values estimate a proportion of the taxon compared to the population. However, while it is simple to find relative from absolute—just divide each value by the total count per sample—it has been difficult to do the opposite. Thus, it would be valuable to generate absolute counts from relative data, which estimate the exact quantity of the organism within a sample.
+
+The model takes in relative abundance data as inputs, which is used to predict the total absolute counts summed across a sample. After finding the ‘total,’ that value can be multiplied by the proportions of relative abundance to synthesize the predicted absolute counts. Since the totals can vary largely in magnitude, from $10^4$ to $10^{13}$, we apply log(1+x) transformations on the prediction targets. We experimented with various linear, random forest, and gradient boosting regressions to achieve this goal.
+
 ## Results
 
 ## Discussion
