@@ -29,7 +29,7 @@ Once we develop the relative → absolute abundance model, we would conduct furt
 ## Methods
 
 ### Differential Abundance Testing
-In the first goal of our project, we perform differential abundance analysis to find taxa that are enriched or depleted across host phenotype groups. ANCOM-BC is employed to model feature abundances on the chosen metadata variables and to compute genus-level log fold changes, providing an interpretable analysis of how the microbiome changes from group to group.
+In the first goal of our project, we perform differential abundance analysis to find taxa that are enriched or depleted across host phenotype groups. ANCOM-BC is employed to model feature abundances on the chosen metadata variables and to compute genus-level log fold changes, providing an interpretable analysis of how the microbiome changes from group to group. Differential abundance analysis is important for our project because it pinpoints which taxa drive microbiome differences across phenotype bins, giving an interpretable link between microbial shifts and host variables.
 
 Initially, the feature table and host metadata are cleaned of blanks and controls, sample identifiers are matched, and critical covariates (age, BMI, sex, and bowel movement type) are kept. For better interpretability and stability we remove implausible values and discretize both age and BMI into ranges to allow for clearer within group (bin-level) comparions. Next, a multifactor ANCOM-BC model with explicit reference levels is fitted, log fold-changes and significance values are exported, effects are aggregated at the genus level and the most prominent genus-level effects per phenotype group are visualized in the heatmaps below.
 
@@ -37,7 +37,7 @@ Lastly, we reapply the identical ANCOM-BC pipeline to the two held-out test abso
 
 
 <p>
-  <img src="assets/all_heatmaps_side_by_side.png" width="700">
+  <img src="assets/all_heatmaps_side_by_side.png" width="800">
 </p>
 
 ### Predictive Modeling
