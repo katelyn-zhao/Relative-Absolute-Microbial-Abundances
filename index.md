@@ -4,12 +4,9 @@
 
 The gut microbiome is the ecosystem of microbes that exist in our digestive system, and analyzing the microbial composition as well as its functions can provide valuable insight to an individual’s health. Research has found strong connections between the gut microbiome with Inflammatory Bowel Disease, Parkinson’s, Alzheimer’s, and autism spectrum disorder. Most existing microbiome datasets contain only relative abundances because absolute quantification methods are expensive and harder to obtain. Our goal is to test whether we can predict total microbial load from relative abundances and use that estimate to approximate absolute taxon abundances.
 
-<iframe
-  src="assets/rel_vs_abs_wetlab_workflow.png"
-  width="800"
-  height="425"
-  frameborder="0"
-></iframe>
+<p>
+  <img src="assets/rel_vs_abs_wetlab_workflow.png" width="700">
+</p>
 
 ## Data
 
@@ -41,6 +38,11 @@ In the third goal of our project, we aim to model absolute abundances using only
 
 The model takes in relative abundance data as inputs, which is used to predict the total absolute counts summed across a sample. After finding the ‘total,’ that value can be multiplied by the proportions of relative abundance to synthesize the predicted absolute counts. Since the totals can vary largely in magnitude, from 10e4 to 10e13, we apply log(1+x) transformations on the prediction targets. We experimented with various linear, random forest, and gradient boosting regressions to achieve this goal.
 
+<p>
+  <img src="assets/abundance_model_training.png" width="700">
+</p>
+
+
 ## Results
 
 ### Differential Abundance Testing
@@ -49,12 +51,9 @@ The model takes in relative abundance data as inputs, which is used to predict t
 
 ### Modeling Absolute from Relative Abundance
 
-<iframe
-  src="assets/rpca_ordination_abundance.png"
-  width="800"
-  height="425"
-  frameborder="0"
-></iframe>
+<p>
+  <img src="assets/rpca_ordination_abundance.png" width="700">
+</p>
 
 ## Discussion
 
