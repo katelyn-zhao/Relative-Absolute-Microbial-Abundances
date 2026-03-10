@@ -1,5 +1,36 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Background image for header */
 .page-header {
   background-image: url("/assets/background.jpg");
   background-size: cover;
   background-position: center;
+}
+
+/* Sticky navigation bar */
+.topnav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #111;
+  padding: 12px 20px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* navigation links */
+.topnav a {
+  color: white;
+  margin: 0 18px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* hover effect */
+.topnav a:hover {
+  color: #22c55e;
 }

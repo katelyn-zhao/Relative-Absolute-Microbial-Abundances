@@ -1,13 +1,14 @@
 # Relative vs. Absolute Microbial Abundances
 
-## Navigation
-- [Problem](#problem)
-- [Data](#data)
-- [Method](#method)
-- [Results](#results)
-- [Discussion](#discussion)
-- [Resources](#resources)
-- [References](#references)
+<div class="topnav">
+<a href="#problem">Problem</a>
+<a href="#data">Data</a>
+<a href="#method">Method</a>
+<a href="#results">Results</a>
+<a href="#discussion">Discussion</a>
+<a href="#resources">Resources</a>
+<a href="#references">References</a>
+</div>
 
 ---
 

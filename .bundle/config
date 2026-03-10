@@ -1,0 +1,3 @@
+---
+BUNDLE_BUILD__EVENTMACHINE: "--with-ldflags=-L/opt/homebrew/opt/openssl@3/lib"
+BUNDLE_PATH: "vendor/bundle"

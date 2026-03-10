@@ -1,0 +1,18 @@
+current directory: /Users/wangzhuoran/Desktop/Relative-Absolute-Microbial-Abundances/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+/opt/homebrew/opt/ruby/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/wangzhuoran/Desktop/Relative-Absolute-Microbial-Abundances/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j11 DESTDIR\= sitearchdir\=./.gem.20260310-2666-cn16it sitelibdir\=./.gem.20260310-2666-cn16it clean
+
+current directory: /Users/wangzhuoran/Desktop/Relative-Absolute-Microbial-Abundances/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j11 DESTDIR\= sitearchdir\=./.gem.20260310-2666-cn16it sitelibdir\=./.gem.20260310-2666-cn16it
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/wangzhuoran/Desktop/Relative-Absolute-Microbial-Abundances/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j11 DESTDIR\= sitearchdir\=./.gem.20260310-2666-cn16it sitelibdir\=./.gem.20260310-2666-cn16it install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20260310-2666-cn16it/racc
+
+current directory: /Users/wangzhuoran/Desktop/Relative-Absolute-Microbial-Abundances/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260310-2666-cn16it sitelibdir\=./.gem.20260310-2666-cn16it clean
