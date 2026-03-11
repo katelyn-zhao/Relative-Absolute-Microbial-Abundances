@@ -92,7 +92,7 @@ We build baseline supervised learning models to predict host metadata variables 
 
 This helps us compare how relative and absolute abundance representations perform in downstream prediction tasks.
 
-#### Data Splitting
+#### Dataset Preparation
 
 The dataset was split into:
 
@@ -100,15 +100,19 @@ The dataset was split into:
 - **20% validation**
 - **20% test**
 
-The training set was used for model fitting, the validation set for hyperparameter tuning and model selection, and the test set for final performance evaluation.
+Where the training set was used for model fitting, the validation set for hyperparameter tuning and model selection, and the test set for final performance evaluation.
+
+We also manually balanced the training set so that each class was represented equally, e.g. for sex we made sure there were an equal number of 'female' and 'male' samples. 
 
 #### Feature Preprocessing
 
 Only microbial taxa features were used as model inputs.
 
-To remove extremely sparse taxa, we applied a **40% prevalence filter** using the training set. This threshold was selected after evaluating several candidate thresholds (0.1–0.5) and choosing the one that produced the best validation performance. Selected features were then applied consistently to the validation and test sets.
+For the BMI and bowel movement predictive tasks, we removed extremely sparse taxa by applying a **40% prevalence filter** using the training set. This threshold was selected after evaluating several candidate thresholds (0.1–0.5) and choosing the one that produced the best validation performance. Selected features were then applied consistently to the validation and test sets.
 
-To reduce skewness in microbiome abundance data, both absolute and relative abundance values were transformed using: log(x + 1)
+To reduce skewness in microbiome abundance data, both absolute and relative abundance values were transformed using log(x + 1). 
+
+We used a OneHotEncoder to encode the sex, BMI, and bowel movement quality metadata features. 
 
 
 #### Prediction Tasks
@@ -125,11 +129,12 @@ We evaluated four prediction tasks using microbiome features:
 We trained several commonly used machine learning models for high-dimensional biological data:
 
 - **Random Forest**
+- **Gradient Boosted Regression** (for age prediction)
 - **HistGradientBoosting**
 - **Support Vector Machine (RBF kernel)**
 - **Logistic Regression** (for sex classification)
 
-Random Forest models used fixed hyperparameters, while **HistGradientBoosting and SVM models were tuned using GridSearchCV**.
+Random Forest and Gradient Boosted regression models used fixed hyperparameters, while **HistGradientBoosting and SVM models were tuned using GridSearchCV**.
 
 
 #### Evaluation
@@ -207,6 +212,18 @@ This improvement was **statistically significant**, but the effect size was mode
 #### Sex
 Sex prediction performance was similar across representations. Relative abundance performed slightly better overall, but the difference was **not statistically significant**.
 
+**Absolute:**
+- Best model: **Logistic Regressor**
+- Test Accuracy = **68.03%**
+- Test Macro-F1 = **0.647**
+- Macro-AUC = **0.737**
+
+**Relative:**
+- Best model: **Random Forest Classifier**
+- Test Accuracy = **69.92%**
+- Test Macro-F1 = **0.677**
+- Macro-AUC = **0.724**
+
 #### BMI
 BMI showed the strongest benefit from relative abundance.
 
@@ -231,6 +248,7 @@ Bowel movement classification achieved similar results across abundance represen
 
 Bootstrap comparisons found **no significant difference** between absolute and relative abundance models.
 
+#### Overview
 <p align="center">
   <img src="assets/model_comparison.png" width="750" alt="Comparison of predictive performance across abundance representations">
 </p>
@@ -265,4 +283,74 @@ If successful, this framework could help researchers extend absolute-abundance-s
 
 ## References
 
-Add your references here in a consistent citation format.
+<div id="references">
+
+  <p class="hanging-indent">Abbott, Sharon L., Michael Waddington, David Lindquist, Jim Ware, Wendy Cheung, Janet Ely, and J. Michael Janda. "Description of <i>Campylobacter curvus</i> and C. curvus-like Strains Associated with Sporadic Episodes of Bloody Gastroenteritis and Brainerd's Diarrhea." <i>Journal of Clinical Microbiology</i> 43, no. 2 (2005): 585–588.</p>
+
+  <p class="hanging-indent">Aitchison, John. "The Statistical Analysis of Compositional Data." <i>Journal of the Royal Statistical Society: Series B (Methodological)</i> 44, no. 2 (1982): 139–160.</p>
+
+  <p class="hanging-indent">All of Us Research Program Investigators. "The 'All of Us' Research Program." <i>New England Journal of Medicine</i> 381, no. 7 (2019): 668–676.</p>
+
+  <p class="hanging-indent">Ames, Nancy J., Alexandra Ranucci, Brad Moriyama, and Gwenyth R. Wallen. "The Human Microbiome and Understanding the 16S rRNA Gene in Translational Nursing Science." <i>Nursing Research</i> 66, no. 2 (2017): 184–197.</p>
+
+  <p class="hanging-indent">Anderson, Marti J. "A New Method for Non-Parametric Multivariate Analysis of Variance." <i>Austral Ecology</i> 26, no. 1 (2001): 32–46.</p>
+
+  <p class="hanging-indent">Arboleya, Silvia, Claire Watkins, Catherine Stanton, and R. Paul Ross. "Gut Bifidobacteria Populations in Human Health and Aging." <i>Frontiers in Microbiology</i> 7 (2016): 1204.</p>
+
+  <p class="hanging-indent">Bolyen, Evan, Jai Ram Rideout, Matthew R. Dillon, Nicholas A. Bokulich, Christian C. Abnet, Gabriel A. Al-Ghalith, Harriet Alexander, et al. "Reproducible, Interactive, Scalable and Extensible Microbiome Data Science Using QIIME 2." <i>Nature Biotechnology</i> 37, no. 8 (2019): 852–857.</p>
+
+  <p class="hanging-indent">DeWeerdt, Sarah. "Parkinson's Gut-Microbiota Links Raise Treatment Possibilities." <i>Nature</i> (2025).</p>
+
+  <p class="hanging-indent">Fernandes, Andrew D., Jennifer Ns Reid, Jean M. Macklaim, Thomas A. McMurrough, David R. Edgell, and Gregory B. Gloor. "Unifying the Analysis of High-Throughput Sequencing Datasets: Characterizing RNA-seq, 16S rRNA Gene Sequencing and Selective Growth Experiments by Compositional Data Analysis." <i>Microbiome</i> 2, no. 1 (2014): 15.</p>
+
+  <p class="hanging-indent">Forry, Samuel P., Stephanie L. Servetas, Jason G. Kralj, Keng Soh, Michalis Hadjithomas, Raul Cano, Martha Carlin, et al. "Variability and Bias in Microbiome Metagenomic Sequencing: An Interlaboratory Study Comparing Experimental Protocols." <i>Scientific Reports</i> 14, no. 1 (2024): 9785.</p>
+
+  <p class="hanging-indent">Gloor, Gregory B., Jean M. Macklaim, Vera Pawlowsky-Glahn, and Juan J. Egozcue. "Microbiome Datasets Are Compositional: And This Is Not Optional." <i>Frontiers in Microbiology</i> 8 (2017): 2224.</p>
+
+  <p class="hanging-indent">Huang, Shi, Niina Haiminen, Anna-Paola Carrieri, Rebecca Hu, Lingjing Jiang, Laxmi Parida, Baylee Russell, et al. "Human Skin, Oral, and Gut Microbiomes Predict Chronological Age." <i>mSystems</i> 5, no. 1 (2020): 10–1128.</p>
+
+  <p class="hanging-indent">Knight, Rob, Alison Vrbanac, Bryn C. Taylor, Alexander Aksenov, Chris Callewaert, Justine Debelius, Antonio Gonzalez, et al. "Best Practices for Analysing Microbiomes." <i>Nature Reviews Microbiology</i> 16, no. 7 (2018): 410–422.</p>
+
+  <p class="hanging-indent">Knights, Dan, Laura Wegener Parfrey, Jesse Zaneveld, Catherine Lozupone, and Rob Knight. "Human-Associated Microbial Signatures: Examining Their Predictive Value." <i>Cell Host &amp; Microbe</i> 10, no. 4 (2011): 292–296.</p>
+
+  <p class="hanging-indent">Lin, Huang, and Shyamal Das Peddada. "Analysis of Compositions of Microbiomes with Bias Correction." <i>Nature Communications</i> 11, no. 1 (2020): 3514.</p>
+
+  <p class="hanging-indent">Lovell, David, Vera Pawlowsky-Glahn, Juan José Egozcue, Samuel Marguerat, and Jürg Bähler. "Proportionality: A Valid Alternative to Correlation for Relative Data." <i>PLoS Computational Biology</i> 11, no. 3 (2015): e1004075.</p>
+
+  <p class="hanging-indent">McArdle, Brian H., and Marti J. Anderson. "Fitting Multivariate Models to Community Data: A Comment on Distance-Based Redundancy Analysis." <i>Ecology</i> 82, no. 1 (2001): 290–297.</p>
+
+  <p class="hanging-indent">McDonald, Daniel, Embriette Hyde, Justine W. Debelius, James T. Morton, Antonio Gonzalez, Gail Ackermann, Alexander A. Aksenov, et al. "American Gut: An Open Platform for Citizen Science Microbiome Research." <i>mSystems</i> 3, no. 3 (2018): 10–1128.</p>
+
+  <p class="hanging-indent">Melito, P. L., C. Munro, P. R. Chipman, D. L. Woodward, T. F. Booth, and F. G. Rodgers. "<i>Helicobacter winghamensis</i> sp. nov., a Novel <i>Helicobacter</i> sp. Isolated from Patients with Gastroenteritis." <i>Journal of Clinical Microbiology</i> 39, no. 7 (2001): 2412–2417.</p>
+
+  <p class="hanging-indent">Miller, Don M. "Reducing Transformation Bias in Curve Fitting." <i>The American Statistician</i> 38, no. 2 (1984): 124–126.</p>
+
+  <p class="hanging-indent">Morton, James T., Clarisse Marotz, Alex Washburne, Justin Silverman, Livia S. Zaramela, Anna Edlund, Karsten Zengler, and Rob Knight. "Establishing Microbial Composition Measurement Standards with Reference Frames." <i>Nature Communications</i> 10, no. 1 (2019): 2719.</p>
+
+  <p class="hanging-indent">National Institutes of Health. "Nutrition for Precision Health, Powered by the All of Us Research Program." 2021.</p>
+
+  <p class="hanging-indent">Nearing, Jacob T., Gavin M. Douglas, Molly G. Hayes, Jocelyn MacDonald, Dhwani K. Desai, Nicole Allward, Casey M. A. Jones, et al. "Microbiome Differential Abundance Methods Produce Different Results Across 38 Datasets." <i>Nature Communications</i> 13, no. 1 (2022): 342.</p>
+
+  <p class="hanging-indent">Pasolli, Edoardo, Duy Tin Truong, Faizan Malik, Levi Waldron, and Nicola Segata. "Machine Learning Meta-Analysis of Large Metagenomic Datasets: Tools and Biological Insights." <i>PLoS Computational Biology</i> 12, no. 7 (2016): e1004977.</p>
+
+  <p class="hanging-indent">Props, Ruben, Frederiek-Maarten Kerckhof, Peter Rubbens, Jo De Vrieze, Emma Hernandez Sanabria, Willem Waegeman, Pieter Monsieurs, Frederik Hammes, and Nico Boon. "Absolute Quantification of Microbial Taxon Abundances." <i>The ISME Journal</i> 11, no. 2 (2017): 584–587.</p>
+
+  <p class="hanging-indent">Rahman, Gibraan, James T. Morton, Cameron Martino, Gregory D. Sepich-Poore, Celeste Allaband, Caitlin Guccione, Yang Chen, Daniel Hakim, Mehrbod Estaki, and Rob Knight. "BIRDMAn: A Bayesian Differential Abundance Framework That Enables Robust Inference of Host-Microbe Associations." <i>BioRxiv</i> (2023).</p>
+
+  <p class="hanging-indent">Thomas, Andrew Maltez, Paolo Manghi, Francesco Asnicar, Edoardo Pasolli, Federica Armanini, Moreno Zolfo, Francesco Beghini, et al. "Metagenomic Analysis of Colorectal Cancer Datasets Identifies Cross-Cohort Microbial Diagnostic Signatures and a Link with Choline Degradation." <i>Nature Medicine</i> 25, no. 4 (2019): 667–678.</p>
+
+  <p class="hanging-indent">The Human Microbiome Project Consortium. "Structure, Function and Diversity of the Healthy Human Microbiome." <i>Nature</i> 486, no. 7402 (2012): 207–214.</p>
+
+  <p class="hanging-indent">Tkacz, Andrzej, Marion Hortala, and Philip S. Poole. "Absolute Quantitation of Microbiota Abundance in Environmental Samples." <i>Microbiome</i> 6, no. 1 (2018): 110.</p>
+
+  <p class="hanging-indent">Turnbaugh, Peter J., Micah Hamady, Tanya Yatsunenko, Brandi L. Cantarel, Alexis Duncan, Ruth E. Ley, Mitchell L. Sogin, et al. "A Core Gut Microbiome in Obese and Lean Twins." <i>Nature</i> 457, no. 7228 (2009): 480–484.</p>
+
+  <p class="hanging-indent">Vandeputte, Doris, Gunter Kathagen, Kevin D'hoe, Sara Vieira-Silva, Mireia Valles-Colomer, João Sabino, Jun Wang, et al. "Quantitative Microbiome Profiling Links Gut Community Variation to Microbial Load." <i>Nature</i> 551, no. 7681 (2017): 507–511.</p>
+
+  <p class="hanging-indent">Vandesompele, Jo, Katleen De Preter, Filip Pattyn, Bruce Poppe, Nadine Van Roy, Anne De Paepe, and Frank Speleman. "Accurate Normalization of Real-Time Quantitative RT-PCR Data by Geometric Averaging of Multiple Internal Control Genes." <i>Genome Biology</i> 3, no. 7 (2002): research0034–1.</p>
+
+  <p class="hanging-indent">Zaramela, L. S., M. Tjuanta, O. Moyne, M. Neal, and K. Zengler. "SynDNA—A Synthetic DNA Spike-In Method for Absolute Quantification of Shotgun Metagenomic Sequencing." <i>mSystems</i> 7 (2022): e0044722.</p>
+
+  <p class="hanging-indent">Zeng, Shi-Yu, Yi-Fu Liu, Jiang-Hua Liu, Zhao-Lin Zeng, and Hui Xie. "Potential Effects of <i>Akkermansia muciniphila</i> in Aging and Aging-Related Diseases: Current Evidence and Perspectives." <i>Aging and Disease</i> 14, no. 6 (2023): 2015.</p>
+
+</div>
