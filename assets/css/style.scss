@@ -83,3 +83,57 @@ p {
   color: #425d98;   /* same dark blue as navbar */
   font-weight: 600;
 }
+
+
+
+/* hero header */
+.page-header {
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.45)
+    ),
+    url("../background.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-top: 0;
+  padding: 120px 20px 140px 20px;
+  text-align: center;
+}
+
+/* title in hero */
+.page-header h1,
+.project-name {
+  font-size: 52px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  letter-spacing: 1px;
+}
+
+/* custom buttons under title */
+.hero-buttons {
+  margin-top: -110px;   /* pulls buttons upward into hero area */
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin: 8px 10px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(2px);
+}
+
+.hero-btn:hover {
+  background: white;
+  color: #293A60;
+}
