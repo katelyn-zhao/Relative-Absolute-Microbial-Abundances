@@ -131,6 +131,48 @@ We evaluate whether predicted absolute tables recover similar:
 
 We compare model performance across abundance representations for host phenotype prediction tasks. These results help determine whether absolute abundance provides stronger predictive signal than relative abundance.
 
+#### Age
+The best age regression model was an **RBF SVM**. Relative abundance performed slightly better than absolute abundance:
+
+- **Absolute:** test MAE = 9.76, test R² = 0.438  
+- **Relative:** test MAE = 9.30, test R² = 0.484  
+
+This improvement was **statistically significant**, but the effect size was modest.
+
+#### Sex
+Sex prediction performance was similar across representations. Relative abundance performed slightly better overall, but the difference was **not statistically significant**.
+
+#### BMI
+BMI showed the strongest benefit from relative abundance.
+
+**Regression**
+- Best model: **Relative-abundance SVM**
+- Test MAE = **4.512**
+- Test R² = **0.220**
+
+**Classification**
+- Best model: **Relative-abundance SVM**
+- Test Accuracy = **0.493**
+- Test Macro-F1 = **0.390**
+- Macro-AUC = **0.705**
+
+These results suggest that microbiome composition contains some BMI-related signal, but predictive power remains moderate.
+
+#### Bowel Movement
+Bowel movement classification achieved similar results across abundance representations.
+
+- Best test accuracy: **0.645**
+- Best macro-F1: **0.397**
+
+Bootstrap comparisons found **no significant difference** between absolute and relative abundance models.
+
+<p align="center">
+  <img src="assets/model_comparison.png" width="750" alt="Comparison of predictive performance across abundance representations">
+</p>
+
+**Figure.** Summary of best-performing metadata prediction models across age, sex, BMI, and bowel movement tasks.
+
+
 ### Relative-to-Absolute Modeling
 
 We evaluate the quality of predicted absolute abundance tables by comparing their structure to true absolute abundance profiles. Ordination and downstream analyses help assess how well the synthetic data preserves the original biological relationships.
