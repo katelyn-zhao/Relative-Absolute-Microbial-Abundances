@@ -27,8 +27,8 @@ In contrast, **absolute abundance** data contains the true count of taxa present
 </p>
 
 Thus, our project had two ultimate goals:
-1) Evaluate whether absolute abundance data can provide more insights into the gut microbiome.
-2) Find a method of constructing absolute abundance data from relative abundance to perform new analyses and save money on an expensive lab procedure.
+1. Evaluate whether absolute abundance data can provide more insights into the gut microbiome.
+2. Find a method of constructing absolute abundance data from relative abundance to perform new analyses and save money on an expensive lab procedure.
 
 ### Objectives
 We conducted the following analyses:
