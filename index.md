@@ -68,27 +68,10 @@ Our methodology consists of three major components.
 
 ### 1. Differential Abundance Analysis
 
-We use **ANCOM-BC** to identify taxa that are enriched or depleted across host phenotype groups. This allows us to compare biological signals across abundance representations.
+We used two complementary frameworks to identify taxa enriched or depleted across host phenotype groups. **ANCOM-BC** was run via QIIME2, fitting a multifactor model with age, BMI, sex, and bowel movement as covariates; results were summarized at the genus level using log fold changes and FDR-adjusted q-values. **BIRDMAn** was run in parallel at the species level using a Bayesian hierarchical negative binomial model, and credible intervals on log fold changes were used to evaluate features of interest. We also ran a multifactor PERMANOVA on Bray–Curtis distances to contextualize taxon-level signals at the whole-community level.
 
-Our workflow:
-- clean metadata and feature tables
-- match sample IDs
-- retain important covariates such as age, BMI, sex, and bowel movement type
-- remove implausible values
-- discretize age and BMI into bins for clearer interpretation
-- fit multifactor ANCOM-BC models with explicit reference levels
-- summarize significant genus-level effects
-- visualize results with heatmaps
+To evaluate signal preservation, we applied the same ANCOM-BC pipeline to the true absolute abundance table and to the estimated absolute abundance table (relative abundance scaled by predicted total microbial load), comparing effect directions across both representations.
 
-To assess **signal preservation**, we apply the same pipeline to:
-- true held-out absolute abundance tables
-- predicted absolute abundance tables
-
-This lets us evaluate whether synthetic absolute profiles recover similar effect directions and relative magnitudes.
-
-<p align="center">
-  <img src="assets/all_heatmaps_side_by_side.png" width="800">
-</p>
 
 ### 2. Predictive Modeling
 
@@ -196,14 +179,39 @@ Because total abundance varies widely across samples, we apply a **log(1 + x)** 
 
 ### 1. Differential Abundance
 
-Our differential abundance analysis compares whether important taxa and phenotype-associated signals are preserved across:
-- true absolute abundance data
-- predicted absolute abundance data
+Differential abundance analysis showed that host-associated microbial signals were present in the NPH relative abundance data, but their strength and structure depended on the phenotype being tested.
 
-We evaluate whether predicted absolute tables recover similar:
-- significant taxa
-- effect directions
-- relative effect magnitudes
+<p align="center">
+  <img src="assets/ancom-birdman-heatmaps.png" width="800">
+</p>
+
+### Age
+
+**Age** remained the clearest and most consistent differential abundance signal in our analysis. Compared with the other metadata categories, age produced broader and more coherent taxonomic shifts across bins and stood out in both ANCOM-BC and BIRDMAn as the strongest overall phenotype-associated pattern.
+
+At the taxon level, *Bifidobacterium longum* and *Bifidobacterium adolescentis* were relatively enriched in younger age bins and depleted in older ones, while *Akkermansia muciniphila* showed the opposite pattern. These results made age the strongest and most interpretable biological signal in the differential abundance analysis.
+
+### BMI
+
+**BMI** was also associated with taxonomic differences, but these shifts were weaker and more gradual overall than those observed for age. Across both ANCOM-BC and BIRDMAn, BMI showed detectable signal, but the results were less coherent and less strongly structured across bins.
+
+Overall, the BMI findings suggest that body mass is associated with microbiome variation, though the signal appears more modest and diffuse than the age-associated shifts.
+
+### Bowel Movement Quality
+
+**Bowel movement quality** also showed clear taxon-level contrasts relative to the normal-stool reference group, but unlike age, these effects appeared more localized. At the species level, both ANCOM-BC and BIRDMAn showed visible separation from the reference category, although the two methods did not consistently prioritize the same exact species.
+
+BIRDMAn highlighted taxa such as *Campylobacter curvus* and *Helicobacter winghamensis*, both of which have previously been associated with gastroenteritis or diarrhea-related gut disturbance.
+
+These taxon-level findings were further contextualized by PERMANOVA, which indicated that age was associated with stronger community-level structure, whereas stool-quality effects were more restricted at the whole-community level. When viewed together with the ANCOM-BC and BIRDMAn results, this pattern suggests that **age** is linked to broader and more coherent microbiome-wide restructuring, **BMI** is associated with weaker and more gradual taxonomic shifts, and **bowel movement quality** primarily affects a more limited set of taxa.
+
+### True vs. Estimated Absolute Abundance
+
+As a sensitivity check, we also applied ANCOM-BC to the **true absolute abundance** table and to the **estimated absolute abundance** table. The estimated absolute abundance results were very similar to the true absolute abundance results, suggesting that the major host-associated effect directions were largely preserved after transformation.
+
+Together, these results suggest that the NPH relative abundance data retain meaningful host-associated biological structure, but that the magnitude and coherence of that structure are phenotype-dependent.
+
+
 
 ### 2. Predictive Modeling
 
