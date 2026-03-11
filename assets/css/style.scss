@@ -61,9 +61,9 @@ h1 {
   font-weight: 700;
 }
 
-/* Section titles: Problem, Data, Method, etc. */
+
 h2 {
-  color: #293A60;      /* green tone similar to your screenshot */
+  color: #293A60;
   font-weight: 600;
 }
 
@@ -71,4 +71,10 @@ h2 {
 p {
   color: #444444;
   line-height: 1.7;
+}
+
+
+.main-content h2 {
+  color: #293A60;
+  font-weight: 600;
 }

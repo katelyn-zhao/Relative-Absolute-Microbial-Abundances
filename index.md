@@ -8,7 +8,6 @@
 <a href="#references">References</a>
 </div>
 
----
 
 ## Problem
 
