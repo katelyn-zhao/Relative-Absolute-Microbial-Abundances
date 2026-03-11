@@ -89,20 +89,16 @@ p {
 .resource-links {
   text-align: center;
   margin: 30px 0 50px 0;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 .resource-links a {
-  margin: 0 10px;
+  margin: 0 20px;
   color: #2b6cb0;
   text-decoration: underline;
 }
 
-/* separator */
-.resource-links a + a::before {
-  content: " | ";
-  margin: 0 20px;
-  color: #999;
-  text-decoration: none;
+.resource-links a:hover {
+  color: #1e4e8c;
 }
