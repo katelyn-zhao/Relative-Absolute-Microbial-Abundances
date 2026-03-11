@@ -187,6 +187,11 @@ We experiment with multiple regression approaches, including:
 </p>
 
 #### Model Evaluation
+We evaluated the model in two layers, the loads themselves and the resulting predicted absolute abundance table. 
+
+We measured the R², MAE, and RMSE for predictions in log space and raw space, the Spearman correlation, and median log error between the true and predicted loads.
+
+In order to assess the correspondence between the true and predicted absolute abundance tables, we used Bray-Curtis dissimilarity to construct dissimilarity matrices. Bray-Curtis quantifies the pairwise dissimilarity between each sample using feature counts and does not make assumptions about compositionality. To visualize the dissimilarity, we ran Principal Coordinates Analysis (PCoA) on the matrices to embed them into coordinates, then compare the two sets of ordinations using Procrustes. Procrustes finds the optimal translation, rotation, and uniform scaling to fit one set into another. This step compares the distance of the same sample in the two ordinations between true and predicted.
 
 #### Cross Dataset Assessment
 
@@ -305,12 +310,16 @@ Model performance is as follows:
 - Validation R²: 0.515
 - Testing R²: 0.638
 
-We evaluate the quality of predicted absolute abundance tables by comparing their structure to true absolute abundance profiles. Ordination and downstream analyses help assess how well the synthetic data preserves the original biological relationships.
+#### Predicted Absolute Abundance Tables
+In visualizing the Bray-Curtis dissimilarities, PCoA was applied on each matrix and then run through Procrustes to generate the following visualization:
 
 <p align="center">
-  <img src="assets/rpca_ordination_abundance.png" width="700">
+  <img src="assets/pcoa_procrustes.png" width="700">
 </p>
 
+The resulting Procrustes M² yielded 0.555 on the test split. Also seen through the visualization, we observe moderate alignment between the two ordination configurations.
+
+#### Cross Dataset Assessment
 After retraining the model on a new, long-read dataset, we saw that the model performed worse than the model trained on the original dataset. Since the sample size of the new dataset is smaller (87 compared to 1910 in training size), we also retrained the model on a subset of the original data. Under this size-matched setting, the performance on the original dataset dropped significantly. These results indicate that the lower performance observed on the new dataset relative to the full original dataset is likely to be due to large differences in sample size. At the same time, the stronger performance on the new dataset relative to the subsampled original dataset suggests that the modeling approach may retain meaningful predictive power on the long-read dataset despite the differences in sequencing modality and feature composition.
 
 <p align="center">
