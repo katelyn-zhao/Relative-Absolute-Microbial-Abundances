@@ -53,3 +53,22 @@
 .topnav a:hover {
   color: #93c5fd;
 }
+
+/* Main report title (below the header image) */
+h1 {
+  color: #293A60;      /* match navbar blue */
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Section titles: Problem, Data, Method, etc. */
+h2 {
+  color: #1f8f5f;      /* green tone similar to your screenshot */
+  font-weight: 600;
+}
+
+/* Body text styling */
+p {
+  color: #444444;
+  line-height: 1.7;
+}
