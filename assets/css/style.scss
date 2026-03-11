@@ -15,7 +15,7 @@
   background-size: cover;
   background-position: center;
 
-  margin-top: 40px;
+  margin-top: 50px;
   padding: 120px 20px;   /* adds breathing room for title */
   text-align: center;
 }
@@ -76,5 +76,10 @@ p {
 
 .main-content h2 {
   color: #293A60;
+  font-weight: 600;
+}
+
+.main-content h3 {
+  color: #425d98;   /* same dark blue as navbar */
   font-weight: 600;
 }
