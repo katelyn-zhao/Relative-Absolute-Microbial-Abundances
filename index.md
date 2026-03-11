@@ -1,5 +1,3 @@
-# Relative vs. Absolute Microbial Abundances
-
 <div class="topnav">
 <a href="#problem">Problem</a>
 <a href="#data">Data</a>
