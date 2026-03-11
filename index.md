@@ -301,9 +301,9 @@ After testing various linear and non-linear model, the best performing model is 
 
 Model performance is as follows:
 
-- Training $R^2$: 0.999
-- Validation $R^2$: 0.515
-- Testing $R^2$: 0.638
+- Training R²: 0.999
+- Validation R²: 0.515
+- Testing R²: 0.638
 
 We evaluate the quality of predicted absolute abundance tables by comparing their structure to true absolute abundance profiles. Ordination and downstream analyses help assess how well the synthetic data preserves the original biological relationships.
 
