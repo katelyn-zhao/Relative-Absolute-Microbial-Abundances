@@ -1,7 +1,7 @@
 <div class="resource-links">
   <a class="header-btn" href="https://github.com/mwdai049/Microbial-Abundances-Predictions-on-EHR-and-Transformability" target="_blank">View Code</a>
   <a class="header-btn" href="https://drive.google.com/file/d/13E0J8UGHHeai270ouIiKM89FnBLRY9Mr/view" target="_blank">View Report</a>
-  <a class="header-btn" href="https://drive.google.com/file/d/1D5aO0L8WfDuxJiMZauNXtHue4Ejxcr7y/view?usp=sharing" target="_blank">View Poster</a>
+  <a class="header-btn" href="https://drive.google.com/file/d/1TQLrf4RslSd6163AeN5YSy-KB23-aMVj/view" target="_blank">View Poster</a>
 </div>
 
 <div class="topnav">
@@ -156,7 +156,7 @@ We applied **SHAP (SHapley Additive Explanations)** analysis to interpret model 
 
 ### 3. Modeling Absolute Abundance from Relative Abundance
 
-Our final goal is to estimate absolute abundance using only relative abundance data.
+Our final goal is to estimate absolute abundance using relative abundance data.
 
 The idea is:
 
@@ -164,14 +164,33 @@ The idea is:
 2. multiply the predicted total by each feature’s relative proportion,
 3. generate a **synthetic absolute abundance table**.
 
-Because total abundance varies widely across samples, we apply a **log(1 + x)** transformation to the prediction target. We experiment with multiple regression approaches, including:
+Before training the model, we performed a number of transformations on the read counts and proportions.
+
+1. CLR transformation of proportions to remove the compositional constraint.
+2. Log of the relative abundance
+3. Log of the total read counts per sample
+4. A presence/absence indicator for each taxon
+5. Log of the raw read counts
+
+These five features are then combined to create the final design matrix. Together, these features provide different views of the data in both compositional and count form. Using all of these allows the model to learn from both: which taxons are present and in what proportions and how strong the overall count signal is in the samples.
+
+Because total abundance varies widely across samples, we apply a **log(1 + x)** transformation to the prediction target. 
+
+We experiment with multiple regression approaches, including:
 - linear models
 - random forest
 - gradient boosting
+- neural networks
 
 <p align="center">
   <img src="assets/abundance_model_training.png" width="700">
 </p>
+
+#### Model Evaluation
+
+#### Cross Dataset Assessment
+
+To test the validity of our approach and for generalizability across sequencing types, we retrained the same model on a separate dataset. Since the new dataset was generated using long-read sequencing, it differed in feature composition from the first dataset. Therefore, direct evaluation of the model trained on the first dataset was not possible. Instead, we retrained the best performing model on the new dataset and evaluated the results independently. Because the long-read dataset contained significantly fewer samples than the original dataset, we also subsampled the original dataset to match the sample size of the long-read dataset and retrained the same model. This analysis was used to check if differences in predictive performance were also due to limited sample size or sequencing modality alone.
 
 ---
 
@@ -276,10 +295,26 @@ Bootstrap comparisons found **no significant difference** between absolute and r
 
 ### 3. Modeling Absolute Abundance from Relative Abundance
 
+#### Load Prediction Performance
+
+After testing various linear and non-linear model, the best performing model is XGBoost regression using gradient-boosted decision trees. 
+
+Model performance is as follows:
+
+- Training $R^2$: 0.999
+- Validation $R^2$: 0.515
+- Testing $R^2$: 0.638
+
 We evaluate the quality of predicted absolute abundance tables by comparing their structure to true absolute abundance profiles. Ordination and downstream analyses help assess how well the synthetic data preserves the original biological relationships.
 
 <p align="center">
   <img src="assets/rpca_ordination_abundance.png" width="700">
+</p>
+
+After retraining the model on a new, long-read dataset, we saw that the model performed worse than the model trained on the original dataset. Since the sample size of the new dataset is smaller (87 compared to 1910 in training size), we also retrained the model on a subset of the original data. Under this size-matched setting, the performance on the original dataset dropped significantly. These results indicate that the lower performance observed on the new dataset relative to the full original dataset is likely to be due to large differences in sample size. At the same time, the stronger performance on the new dataset relative to the subsampled original dataset suggests that the modeling approach may retain meaningful predictive power on the long-read dataset despite the differences in sequencing modality and feature composition.
+
+<p align="center">
+  <img src="assets/pacbio_comparison.png" width="700">
 </p>
 
 ---
