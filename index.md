@@ -27,7 +27,7 @@ Our project asks whether we can:
 3. use relative abundance data to estimate total microbial load and generate **synthetic absolute abundance tables**.
 
 <p align="center">
-  <img src="assets/rel_vs_abs_wetlab_workflow.png" width="700">
+  <img src="assets/microbiome-sequencing-process.png" width="700">
 </p>
 
 ---
@@ -268,16 +268,18 @@ We evaluate the quality of predicted absolute abundance tables by comparing thei
 
 ## Discussion
 
-This project studies the tradeoff between data quality and data availability in microbiome research.
-
-Absolute abundance measurements are more biologically interpretable, but they are harder and more expensive to collect. Relative abundance data is far more common, so an effective method for estimating absolute abundance from relative abundance could make more datasets useful for downstream biological analysis.
-
-More broadly, our work asks two key questions:
+More broadly, our work asked two key questions:
 
 - How much biological signal is lost when using only relative abundance?
 - Can predicted absolute abundance recover enough signal to support meaningful downstream analysis?
 
-If successful, this framework could help researchers extend absolute-abundance-style analysis to datasets where only relative abundances are available.
+Ultimately, we found that:
+
+- There are consistent trends across metadata variables that can be used for downstream modelling. 
+- Models trained on absolute and relative abundance data perform similarly, indicating that there is no significant advantage to using one dataset over the other for predictive tasks. 
+- Predicting total microbial load from relative abundance data is possible, although further improvements in model training and raw-space transformations are needed.
+
+Next steps may involve evaluating these approaches on longitudinal datasets and exploring additional prediction targets, such as disease phenotypes.
 
 ---
 
