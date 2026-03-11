@@ -80,10 +80,14 @@ p {
 }
 
 .main-content h3 {
-  color: #425d98;   /* same dark blue as navbar */
+  color: #293a60e7;   /* same dark blue as navbar */
   font-weight: 600;
 }
 
+.main-content h4 {
+  color: rgba(66, 93, 152, 0.866);   /* same dark blue as navbar */
+  font-weight: 600;
+}
 
 
 .resource-links {
@@ -95,7 +99,7 @@ p {
 
 .resource-links a {
   margin: 0 20px;
-  color: #2b6cb0;
+  color: #293A60;
   text-decoration: underline;
 }
 
