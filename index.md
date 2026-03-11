@@ -93,6 +93,72 @@ We build baseline supervised learning models to predict host metadata variables 
 
 This helps us compare how relative and absolute abundance representations perform in downstream prediction tasks.
 
+#### Data Splitting
+
+The dataset was split into:
+
+- **60% training**
+- **20% validation**
+- **20% test**
+
+The training set was used for model fitting, the validation set for hyperparameter tuning and model selection, and the test set for final performance evaluation.
+
+#### Feature Preprocessing
+
+Only microbial taxa features were used as model inputs.
+
+To remove extremely sparse taxa, we applied a **40% prevalence filter** using the training set. This threshold was selected after evaluating several candidate thresholds (0.1–0.5) and choosing the one that produced the best validation performance. Selected features were then applied consistently to the validation and test sets.
+
+To reduce skewness in microbiome abundance data, both absolute and relative abundance values were transformed using: log(x + 1)
+
+
+#### Prediction Tasks
+
+We evaluated four prediction tasks using microbiome features:
+
+- **Age** (regression)
+- **Sex** (classification)
+- **BMI** (regression and classification)
+- **Bowel movement** (classification)
+
+#### Models
+
+We trained several commonly used machine learning models for high-dimensional biological data:
+
+- **Random Forest**
+- **HistGradientBoosting**
+- **Support Vector Machine (RBF kernel)**
+- **Logistic Regression** (for sex classification)
+
+Random Forest models used fixed hyperparameters, while **HistGradientBoosting and SVM models were tuned using GridSearchCV**.
+
+
+#### Evaluation
+
+Model performance was evaluated using metrics appropriate for each task.
+
+Regression tasks (Age, BMI):
+
+- **Mean Absolute Error (MAE)**
+- **R²**
+
+Classification tasks (Sex, BMI category, Bowel movement):
+
+- **Accuracy**
+- **Macro-F1**
+- **Weighted-F1**
+- **ROC-AUC**
+
+Baseline models (mean prediction or majority class) were used for comparison.
+
+#### Statistical Comparison
+
+To compare models trained on **absolute vs relative abundance**, we used **bootstrap resampling (10,000 iterations)** to estimate confidence intervals and test whether performance differences were statistically significant.
+
+#### Model Interpretation
+
+We applied **SHAP (SHapley Additive Explanations)** analysis to interpret model predictions and identify microbial taxa that contributed most strongly to each prediction task.
+
 ### 3. Modeling Absolute Abundance from Relative Abundance
 
 Our final goal is to estimate absolute abundance using only relative abundance data.
@@ -116,7 +182,7 @@ Because total abundance varies widely across samples, we apply a **log(1 + x)** 
 
 ## Results
 
-### Differential Abundance
+### 1. Differential Abundance
 
 Our differential abundance analysis compares whether important taxa and phenotype-associated signals are preserved across:
 - true absolute abundance data
@@ -127,7 +193,7 @@ We evaluate whether predicted absolute tables recover similar:
 - effect directions
 - relative effect magnitudes
 
-### Predictive Modeling
+### 2. Predictive Modeling
 
 We compare model performance across abundance representations for host phenotype prediction tasks. These results help determine whether absolute abundance provides stronger predictive signal than relative abundance.
 
@@ -173,7 +239,7 @@ Bootstrap comparisons found **no significant difference** between absolute and r
 **Figure.** Summary of best-performing metadata prediction models across age, sex, BMI, and bowel movement tasks.
 
 
-### Relative-to-Absolute Modeling
+### 3. Modeling Absolute Abundance from Relative Abundance
 
 We evaluate the quality of predicted absolute abundance tables by comparing their structure to true absolute abundance profiles. Ordination and downstream analyses help assess how well the synthetic data preserves the original biological relationships.
 
