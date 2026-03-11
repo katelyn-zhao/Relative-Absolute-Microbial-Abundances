@@ -158,7 +158,7 @@ BMI showed the strongest benefit from relative abundance.
 
 These results suggest that microbiome composition contains some BMI-related signal, but predictive power remains moderate.
 
-#### Bowel Movement
+#### Bowel Movement (Stool Quality)
 Bowel movement classification achieved similar results across abundance representations.
 
 - Best test accuracy: **0.645**
@@ -195,15 +195,6 @@ More broadly, our work asks two key questions:
 - Can predicted absolute abundance recover enough signal to support meaningful downstream analysis?
 
 If successful, this framework could help researchers extend absolute-abundance-style analysis to datasets where only relative abundances are available.
-
----
-
-## Resources
-
-- **GitHub Repository:** [Add repo link here]
-- **Final Report:** [Add report link here]
-- **Poster:** [Add poster link here]
-- **Demo / Notebook:** [Add demo link here]
 
 ---
 
