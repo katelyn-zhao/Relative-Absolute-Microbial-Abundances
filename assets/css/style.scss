@@ -1,84 +1,25 @@
-// ---
-// ---
-
-// @import "{{ site.theme }}";
-
-// /* Background image for header */
-// .page-header {
-//   background-image:
-//     linear-gradient(
-//       rgba(0,0,0,0.45),
-//       rgba(0,0,0,0.45)
-//     ),
-//     url("../background.jpg");
-
-//   background-size: cover;
-//   background-position: center;
-
-//   margin-top: 50px;
-//   padding: 120px 20px;   /* adds breathing room for title */
-//   text-align: center;
-// }
-
-// .page-header h1 {
-//   font-size: 52px;
-//   font-weight: 700;
-//   color: white;
-//   text-shadow: 0 4px 10px rgba(0,0,0,0.6);
-//   letter-spacing: 1px;
-// }
-
-// /* Navigation bar */
-// .topnav {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   background: #293A60; /* blue */
-//   padding: 14px 20px;
-//   text-align: center;
-//   z-index: 9999;
-// }
-
-// /* navigation links */
-// .topnav a {
-//   color: white;
-//   margin: 0 18px;
-//   text-decoration: none;
-//   font-weight: 600;
-//   font-size: 16px;
-// }
-
-// /* hover effect */
-// .topnav a:hover {
-//   color: #93c5fd;
-// }
-
 ---
 ---
 
 @import "{{ site.theme }}";
 
-/* Remove default project button if theme still leaves space */
-.project-tagline,
-.btn {
-  display: none;
-}
-
 /* Background image for header */
 .page-header {
   background-image:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.45)
+    ),
     url("../background.jpg");
+
   background-size: cover;
   background-position: center;
-  margin-top: 0;
-  padding: 120px 20px 170px 20px;
+
+  margin-top: 50px;
+  padding: 120px 20px;   /* adds breathing room for title */
   text-align: center;
 }
 
-/* Hero title */
-.project-name,
 .page-header h1 {
   font-size: 52px;
   font-weight: 700;
@@ -87,44 +28,19 @@
   letter-spacing: 1px;
 }
 
-/* Put custom buttons onto the hero area */
-.hero-buttons {
-  position: relative;
-  margin-top: -120px;
-  margin-bottom: 70px;
-  text-align: center;
-  z-index: 20;
-}
-
-.hero-btn {
-  display: inline-block;
-  margin: 8px 10px;
-  padding: 10px 20px;
-  border: 2px solid white;
-  border-radius: 8px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  background: rgba(255,255,255,0.08);
-}
-
-.hero-btn:hover {
-  background: white;
-  color: #293A60;
-}
-
 /* Navigation bar */
 .topnav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #293A60;
+  background: #293A60; /* blue */
   padding: 14px 20px;
   text-align: center;
   z-index: 9999;
 }
 
+/* navigation links */
 .topnav a {
   color: white;
   margin: 0 18px;
@@ -133,6 +49,7 @@
   font-size: 16px;
 }
 
+/* hover effect */
 .topnav a:hover {
   color: #93c5fd;
 }
