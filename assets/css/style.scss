@@ -20,13 +20,21 @@
   text-align: center;
 }
 
+.page-header h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  letter-spacing: 1px;
+}
+
 /* Navigation bar */
 .topnav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #1e3a8a; /* blue */
+  background: #293A60; /* blue */
   padding: 14px 20px;
   text-align: center;
   z-index: 9999;
