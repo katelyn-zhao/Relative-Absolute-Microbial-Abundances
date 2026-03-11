@@ -10,7 +10,6 @@
 <a href="#method">Method</a>
 <a href="#results">Results</a>
 <a href="#discussion">Discussion</a>
-<a href="#resources">Resources</a>
 <a href="#references">References</a>
 </div>
 
