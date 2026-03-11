@@ -18,17 +18,25 @@
 
 The gut microbiome plays an important role in human health, and microbial composition has been linked to conditions such as inflammatory bowel disease, Parkinson’s disease, Alzheimer’s disease, and autism spectrum disorder.
 
-However, most microbiome datasets contain only **relative abundances**, since absolute quantification is more expensive and harder to obtain. Relative abundance data is useful, but it is compositional, meaning each feature is measured as a proportion of the total rather than a direct quantity.
+Most microbiome datasets contain only **relative abundances**, where the sample is measured as composition. The sums of each taxa in a sample must add up to one, meaning that when the count of one taxa increases, the count of another must decrease. 
 
-Our project asks whether we can:
-
-1. recover meaningful biological signals from relative and absolute abundance data,
-2. compare how well each representation supports downstream prediction tasks, and
-3. use relative abundance data to estimate total microbial load and generate **synthetic absolute abundance tables**.
+In contrast, **absolute abundance** data contains the true count of taxa present per sample. However, the process for obtaining this data is far more expensive and labor-intensive.
 
 <p align="center">
   <img src="assets/microbiome-sequencing-process.png" width="700">
 </p>
+
+Thus, our project had two ultimate goals:
+1) Evaluate whether absolute abundance data can provide more insights into the gut microbiome.
+2) Find a method of constructing absolute abundance data from relative abundance to perform new analyses and save money on an expensive lab procedure.
+
+### Objectives
+We conducted the following analyses:
+1. use differential abundance techniques (ANCOM-BC and BIRDMAn) to identify shared biological signals and specify distinctions between the methods,
+2. build baseline supervised machine learning models that can predict host metadata variables like age, body mass index (BMI), stool quality (Bristol Stool Scale), and related phenotypes,
+3. and model absolute abundance using relative abundance data, producing synthetic absolute abundance datasets.
+
+Once we develop the relative → absolute abundance model, we would conduct further analysis to compare the performance of true versus predicted absolute abundance tables. This includes attempting to reproduce the results in parts a) and b) of the project.
 
 ---
 
