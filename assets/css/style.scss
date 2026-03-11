@@ -8,17 +8,19 @@
   background-image: url("../background.jpg");
   background-size: cover;
   background-position: center;
+  margin-top: 60px;   /* prevents overlap with fixed navbar */
 }
 
-/* Sticky navigation bar */
+/* Navigation bar */
 .topnav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  background: #111;
-  padding: 12px 20px;
+  background: #1e3a8a; /* blue */
+  padding: 14px 20px;
   text-align: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 /* navigation links */
@@ -32,5 +34,5 @@
 
 /* hover effect */
 .topnav a:hover {
-  color: #22c55e;
+  color: #93c5fd;
 }
