@@ -183,7 +183,7 @@ We experiment with multiple regression approaches, including:
 - neural networks
 
 <p align="center">
-  <img src="assets/abundance_model_training.png" width="700">
+  <img src="assets/absolute_abundance_training.png" width="700">
 </p>
 
 #### Model Evaluation
