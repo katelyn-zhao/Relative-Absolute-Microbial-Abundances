@@ -1,7 +1,7 @@
 <div class="resource-links">
   <a class="header-btn" href="https://github.com/mwdai049/Microbial-Abundances-Predictions-on-EHR-and-Transformability" target="_blank">View Code</a>
   <a class="header-btn" href="https://drive.google.com/file/d/13E0J8UGHHeai270ouIiKM89FnBLRY9Mr/view" target="_blank">View Report</a>
-  <a class="header-btn" href="https://drive.google.com/file/d/1TQLrf4RslSd6163AeN5YSy-KB23-aMVj/view" target="_blank">View Poster</a>
+  <a class="header-btn" href="https://drive.google.com/file/d/1Odrz1AYXmY_lNCmklPTB6ot99525lkac/view?usp=sharing" target="_blank">View Poster</a>
 </div>
 
 <div class="topnav">
